@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo DOM con JavaScript</title>
+    <style>
+        .azul{
+            color: blue;
+
+        }
+    </style>
+</head>
+<body>
+    <h1 id="cabecero">Ejemplo DOM con JavaScript</h1>
+    <p id="parrafo"> Saludos! </p>
+    <p id="parrafo1" class="azul"> Otro parrafo 1 </p>
+    <p id="parrafo2" class="azul"> Otro parrafo 2 </p>
+
+    <script> 
+        let cabecero = document.getElementById("cabecero");
+        console.log("valor cabecero: " + cabecero.innerHTML);
+
+        let parrafo = document.getElementById("parrafo");
+        console.log("valor parrafo: " + parrafo.innerHTML);
+        
+        parrafo.innerHTML = "Nuevo valor del párrafo";
+        cabecero.innerHTML = "Nuevo cabecero";
+
+        console.log("sauludo desde JavaScript")
+
+
+        let parrafos = document.getElementsByTagName("p");
+        console.log("No. párrafos: " + parrafos.length);
+
+        for(let i = 0; i<parrafos.length; i++){
+            console.log("i: " + i + " - " + parrafos[i].innerHTML);
+        }
+
+        let elementos = document.getElementsByClassName("azul");
+        console.log("No. elementos: " + elementos.length);
+
+        for(let elemento of elementos){
+            console.log( elemento.innerHTML);
+        }
+
+        let elementosPA = document.querySelectorAll("p.azul");
+        console.log("No. elemntosPA: " + elementosPA.length);
+
+
+    </script>
+
+
+    <h1>Ejemplo Formulario con JavaScript</h1>
+    <form id="formulario">
+        Nombre: <input type="text" name="nombre" value="Juan"/>
+        <br/>
+        Apellido <input type="text" name="apellido" value="Perez"/>
+        <br/>
+    </form>
+    <button onclick="mostrarValores()">Mostrar</button>
+
+    <div id="valores"></div>
+    <script>
+        function mostrarValores(){
+            let formulario = document.forms["formulario"];
+            let texto = "";
+            for(let elemento of formulario){
+                texto += elemento.value + "<br/>";
+            }
+            //console.log(texto);
+            document.getElementById("valores").innerHTML = texto;
+
+            let nombre = formulario["nombre"];
+            let apellido = formulario["apellido"];
+            text = nombre.value + "<br/>" + apellido.value; 
+            document.getElementById("valores").innerHTML = text;
+        }
+    </script>
+
+
+    <h1 id="titulo">Manejo DOM con JavaScript</h1>
+    <button onclick="mostrar()"> Mensaje adios </button>
+    <br>
+    <br>
+    <button onclick="mostrar2()"> Cambio título</button> 
+    <br>
+    <br>
+    <button onclick="mostrar3()"> Cambiar imagen</button>
+    <br>
+    <img id="imagen" src="http://globalmentoring.com.mx/imagenes/javascript.png"/>
+
+    <script>
+        console.log(document.getElementById("imagen").src)
+
+        function mostrar(){
+            document.write("Adios");
+        }
+
+        function mostrar2(){
+            document.getElementById("titulo").innerHTML += "<br/> Nuevo Título con el botón de cambio";
+        }
+
+        function mostrar3(){
+            if(document.getElementById("imagen").src == "http://globalmentoring.com.mx/imagenes/javascript.png")
+            document.getElementById("imagen").src = "http://globalmentoring.com.mx./imagenes/html5.png";
+            else
+            document.getElementById("imagen").src = "http://globalmentoring.com.mx/imagenes/javascript.png";
+        }
+    </script>
+
+    <h1 id="titulo2">Cambio de estilos CSS</h1>
+    <button onclick="mostrar4()"> Cambio título </button>
+    <script>
+        function mostrar4(){
+            
+            if(document.getElementById("titulo2").style.color == "black")
+            document.getElementById("titulo2").style.color = "blue";
+            else
+            document.getElementById("titulo2").style.color = "black";
+        }
+
+
+    </script>
+
+
+
+    
+</body>
+</html>
