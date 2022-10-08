@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leccion21</title>
+</head>
+<body onload="entrar()">
+    
+    <h1 onclick="cambiarTexto(this)">Manejo DOM con JavaScript</h1>
+    <br>
+    <p>(Pasa algo al presionar el título)</p>
+    <br>
+    <script>
+        function cambiarTexto(titulo){
+            console.log(titulo);
+            console.log(titulo.innerHTML);
+            titulo.innerHTML = "Cambiamos el título";
+            
+        }
+    </script>
+
+
+    <!-- ASOCIAR EVENTOS A ELEMENTOS -->  
+    <br>
+    <h1 id="titulo">Manejo DOM con JavaScript 2</h1>
+    <br>
+    <p>(Pasa algo al presionar el título)</p>
+    <br>
+    <div id="mostrar"></div>
+    <br>
+    <script>
+        document.getElementById("titulo").onclick = cambiarTexto2;
+
+        function cambiarTexto2(){
+            document.getElementById("titulo").innerHTML = "Nuevo título";
+            document.getElementById("mostrar").innerHTML = "Nuevo contenido";
+        }
+
+    </script>
+
+
+    <!-- MANEJO EVENTO ONLOAD -->  
+    <br>
+    <h1 id="titulo2">Manejo DOM con JavaScript 3</h1>
+    <br>
+    <p>(No hace nada, agrega el texto en automático)</p>
+    <br>
+    <div id="mostrar2"></div>
+    <br>
+    <script>
+        function entrar(){
+            alert("Entrando a la página web");
+            let texto = "";
+            if(navigator.cookieEnabled){
+                texto = "Las cookies están habilitadas";
+            }else{
+                texto = "Las cookies están inhabilitadas"
+            }
+            document.getElementById("mostrar2").innerHTML = texto;
+        }
+
+    </script>
+
+    <!-- ONFOCUS ONBLUR-->  
+    <br>
+    <h1 id="titulo3">Manejo DOM con JavaScript 4</h1>
+    <br>
+    <p>(Transforma el texto del recuadro en mayúsculas después de escribir algo y presionar fuera del él)</p>
+    <br>
+    Nombre: <input type="text" onchange="convertir(this)">
+    <script>
+        function convertir(nombreInput){
+            nombreInput.value = nombreInput.value.toUpperCase();   
+        }
+
+    </script>
+
+
+    <!-- ONMOUSEOUT, ONMOUSEOVER-->  
+    <br>
+    <h1 id="titulo4" onmouseover="rojo(this)" onmouseout="azul(this)">
+        Manejo DOM con JavaScript 5
+    </h1>
+
+    <br>
+    <p>(Si pasas el mouse por encima del título cambia de color)</p>
+    <br>
+    <script>
+        function rojo(titulo){
+            titulo.style.color = "red";
+        }
+
+        function azul(titulo){
+            titulo.style.color = "blue";
+        }
+
+    </script>
+
+
+    <!-- ONMOUSEDOWN, ONMOUSEUP, ONCLICK-->  
+    <br>
+    <h1 id="titulo5" onmousedown="rojo2(this)" onmouseup="azul2(this)" onclick="verde2(this)">
+        Manejo DOM con JavaScript 6
+    </h1>
+
+    <br>
+    <p>(Si mantienes presionado el título cambia de color)</p>
+    <br>
+    <script>
+        function rojo2(titulo){
+            console.log("onmousedown cambio a rojo");
+            titulo.style.color = "red";
+        }
+
+        function azul2(titulo){
+            console.log("onmouseup cambio a azul");
+            titulo.style.color = "blue";
+        }
+
+        function verde2(titulo){
+            console.log("onclick cambio a verde");
+            titulo.style.color = "green";
+        }
+
+    </script>
+
+
+    <!-- ONFOCUS, ONBLUR-->  
+    <br>
+    <h1 id="titulo6">Manejo DOM con JavaScript 7</h1>
+    <br>
+    <p>(El cuadro de texto cambia de color cuando lo presionas y regresa cuando presionas otro lado)</p>
+    <br>
+    <!--
+        Nombre: <input type="text" onfocus="cambiar(this)" onblur="regresar(this)">
+        <br> <br>
+        Apellido: <input type="text" onfocus="cambiar(this)" onblur="regresar(this)"> 
+    -->
+
+    Nombre: <input type="text" id="nombreOnfocus">
+    <br> <br>
+    Apellido: <input type="text" id="apellidoOnblur">
+
+    <script>
+        //cuadro nombre
+        document.getElementById("nombreOnfocus").addEventListener("focus", cambiar);
+        document.getElementById("nombreOnfocus").addEventListener("blur", regresar);
+
+        //cuadro apellido
+        document.getElementById("apellidoOnblur").addEventListener("focus", cambiar);
+        document.getElementById("apellidoOnblur").addEventListener("blur", regresar);
+
+        function cambiar(elementoInput){
+            let evento = elementoInput.target;
+            //elementoInput.style.background = "yellow"; 
+            evento.style.background = "yellow"
+        }
+
+        function regresar(elementoInput){
+            let evento = elementoInput.target;
+            //elementoInput.style.background = "white"; 
+            evento.style.background = "white"
+        }
+        
+
+    </script>
+
+
+
+    <!-- ONFOCUS, ONBLUR (CON FUNCIONES FLECHA)-->  
+    <br> <br>
+    <h1 id="titulo7">Manejo DOM con JavaScript 8</h1>
+    <br>
+    <p>(El cuadro de texto cambia de color cuando lo presionas y regresa cuando presionas otro lado)</p>
+    <br>
+    Nombre: <input type="text" id="nombreOnfocus2">
+    <br> <br>
+    Apellido: <input type="text" id="apellidoOnblur2">
+
+    <script>
+        //cuadro nombre
+        document.getElementById("nombreOnfocus2").addEventListener("focus", (evento) =>{
+            evento.target.style.background = "pink";
+        });
+        document.getElementById("nombreOnfocus2").addEventListener("blur", (evento) => {
+            evento.target.style.background = "";
+        });
+
+        //cuadro apellido
+        document.getElementById("apellidoOnblur2").addEventListener("focus", (evento) =>{
+            evento.target.style.background = "pink";
+        });
+        document.getElementById("apellidoOnblur2").addEventListener("blur", (evento) => {
+            evento.target.style.background = "";
+        });  
+
+    </script>
+
+
+
+    <!-- ONFOCUS, ONBLUR, CON FUNCIONES FLECHA, DENTRO DE UN FORMULARIO -->  
+    <br> <br>
+    <h1 id="titulo8">Manejo DOM con JavaScript 9</h1>
+    <br>
+    <p>(El cuadro de texto cambia de color cuando lo presionas y regresa cuando presionas otro lado)</p>
+    <form id="forma">
+
+        Nombre: <input type="text" id="nombreOnfocus2">
+        <br> <br>
+        Apellido: <input type="text" id="apellidoOnblur2">
+
+    </form>
+
+    <script>
+
+        const forma = document.getElementById("forma");
+
+        forma.addEventListener("focus", (evento) => {
+            evento.target.style.background = "pink";
+        }, true);
+
+        forma.addEventListener("blur", (evento) => {
+            evento.target.style.background = "";
+        }, true);
+
+    </script>
+
+
+</body>
+</html>
