@@ -1,0 +1,28 @@
+h1{
+    color: #f07167;
+}
+
+/*Link nuevo que no ha sido interactuado por el usuario*/
+a:link{
+    color:#fb8500;
+    text-decoration: none;
+}
+
+/*link previamente abierto*/
+a:visited{
+    color:#219ebc;
+    text-decoration: none;
+}
+
+/*Poner el mouse encima del link*/
+a:hover{
+    color: #8ecae6;
+    text-decoration: underline;
+
+}
+
+/*Mantener presionado el link*/
+a:active{
+    color: #023047;
+    text-decoration: underline;
+}
