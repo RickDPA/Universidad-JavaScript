@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularios en HTML</title>
+
+
+
+</head>
+<body>
+
+    <h1>Formularios en HTML</h1>
+
+    <!-- novalidate o novalidate="" determina que cierto campo no es obligatorio, puede sobreponerse a required="" -->
+    <!-- el method="POST" se usa para enviar un HTML porque puede contener información sensible-->  
+    <!-- autocomplete="off" evita que los recuadros muestren opciones para autocompletar -->
+    <form> <!-- novalidate, autocomplete="off" y method="POST" van en la etiqueta de form-->
+
+        <!--<fildset> agrega un marco al formulario-->
+        <fieldset>
+            <!--<legend> agrega un título o leyenda al marco-->
+                <legend>Datos Persona</legend>
+
+
+            <!-- value="" te permite agregar un valor te texto al cargar la página -->  
+            <!-- placeholder="" agrega una información pero solo es visual, no sirve para nada-->
+            <!-- required="" indica que cierto campo es obligatorio -->
+            <label for="nombre">Nombre:</label> <br>
+            <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre" required="true"><br><br>
+
+            <label for="apellido">Apellido:</label> <br>
+            <input type="text" id="apellido" name="apellido" placeholder="Escribe tu apellido" required="true"><br><br>
+
+            <!-- readonly="true" hace que el recuadro no pueda editado por el usuario 
+                 disabled="true" desabilita por completo el cuadro, sin embargo, si haces esto, este atributo no se enviará con el formulario -->
+            <label for="idPersona">Persona:</label> <br>
+            <input type="text" id="idPersona" name="idPersona" readonly="true"  disabled="true" value="2"><br><br>
+
+            <!-- hidden permite ocultar el input aunque este se enviará igualmente con el formulario -->
+            <input type="hidden" id="sistema" name="sistema" value="SAP">
+
+
+
+            <label for="email">Email:</label> <br>
+            <input type="email" id="email" name="email"> <br>
+
+            <!--step="any" permite agregar valores númericos con punto décimal-->
+            <label for="edad">Edad:</label> <br>
+            <input type="number" id="edad" name="edad" step="any"> <br>
+
+            <!-- Esto es para agregar un recuadro con contraseña y que sea invisible
+            <label for="password">Password:</label> <br>
+            <input type="password" id="password" name="password" required="true"> <br>
+            -->
+
+            <!--Cuando haces un radiobutton tienes que agregar el mismo name="" para todas las opciones para que solo se pueda elegir una-->
+            <label>Género</label><br>
+            <input type="radio" id="femenino" name="genero" value="femenino">
+            <label for="femenino">Femenino</label><br>
+            <input type="radio" id="masculino" name="genero">
+            <label for="masculino">Masculino</label><br>
+
+            <!--Cuando haces un checkbox tienes que agregar el mismo name="" relacionarlos aunque en este caso si se puede elegir varias opciones-->
+            <label for="">Género Música favorita</label><br>
+            <input type="checkbox" name="musica" id="clasica" value="clasica">
+            <label for="clasica">Clásica</label><br>
+            <input type="checkbox" name="musica" id="jazz" value="jazz">
+            <label for="jazz">Jazz</label><br>
+
+
+            <!--Para una caja de selección tienes que usar <select> y para cada atributo dentro <option> -->
+            <label for="autos">Marca de auto favorito</label><br>
+            <!--multiple="true" en la etiqueta <select> permite que se puedan seleccionar varios elementos de la caja, 
+                ...esto se hace manteniendo presionado control cuando los seleccionas en la página-->
+            <select name="autos" id="autos"> <!-- aquí va multiple="true"-->
+                <!--Lo que se envía el el valor de value="" sin importar el texto que se visualiza en la página-->
+                <!-- selected="true" te permite asignar qué valor se visualizará por default-->
+                <option value="volvo">Volvo</option>
+                <option value="bmw">BWM</option>
+                <option value="audi" selected="true">Audi</option>
+
+            </select><br><br>
+
+            <!-- Permite agregar un texto más grande, se pueden asignar filas y columnas y un texto que se puede cambiar
+                ... si no se cambia este se enviará como está-->
+            <label for="comentario">Comentario</label><br>
+            <textarea name="comentario" id="comentario" cols="30" rows="2"
+            >Este es mi comentario
+            </textarea><br>
+
+
+            <input type="submit" value="Enviar">
+            <input type="submit" value="Enviar sin validar" formnovalidate="formnovalidate">
+            <input type="reset" value="Restablecer">
+
+
+        </fieldset>
+    </form>
+    
+</body>
+</html>
